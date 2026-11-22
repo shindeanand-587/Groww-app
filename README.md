@@ -1,5 +1,7 @@
 # FestMatch F&B — College Fest Sponsorship & Sampling Engine
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=shindeanand-587/Groww-app&branch=main&mainModule=streamlit_app.py)
+
 > A clean, responsive web application for emerging Indian Food & Beverage (F&B) brands to discover, compare, and shortlist college festivals for product sampling, food stalls, and sponsorships.
 
 ---
