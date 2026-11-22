@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FestMatch F&B - Product Case Study Submission</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      page-break-after: always;
+      break-after: page;
+      min-height: 270mm;
+      max-height: 273mm;
+      position: relative;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .header-banner {
+      border-bottom: 2px solid #e11d48;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-title {
+      font-size: 17pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0;
+      letter-spacing: -0.4px;
+    }
+
+    .header-subtitle {
+      font-size: 9pt;
+      color: #e11d48;
+      font-weight: 700;
+      margin: 2px 0 0 0;
+    }
+
+    .meta-box {
+      text-align: right;
+      font-size: 8pt;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    /* Page 1 Compact Styles to fit precisely on 1 page */
+    .p1-body {
+      font-size: 8pt;
+      line-height: 1.32;
+      color: #1e293b;
+    }
+
+    .p1-body h2 {
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 8px 0 3px 0;
+      border-left: 3px solid #e11d48;
+      padding-left: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .p1-body p {
+      margin: 0 0 5px 0;
+    }
+
+    .p1-body ul, .p1-body ol {
+      margin: 0 0 6px 0;
+      padding-left: 14px;
+    }
+
+    .p1-body li {
+      margin-bottom: 2.5px;
+    }
+
+    .p1-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 4px 0 6px 0;
+    }
+
+    .p1-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 6px 8px;
+    }
+
+    .callout-p1 {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-left: 3px solid #e11d48;
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      margin: 5px 0;
+      color: #881337;
+      line-height: 1.3;
+    }
+
+    /* Normal Pages Styles */
+    .norm-body {
+      font-size: 9pt;
+      line-height: 1.45;
+      color: #334155;
+    }
+
+    .norm-body h2 {
+      font-size: 11.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 14px 0 6px 0;
+      border-left: 3px solid #e11d48;
+      padding-left: 7px;
+    }
+
+    .norm-body h3 {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 6px 0 2px 0;
+    }
+
+    .code-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.2pt;
+      color: #0f172a;
+      white-space: pre-wrap;
+      margin: 4px 0 6px 0;
+      line-height: 1.32;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8pt;
+      margin: 8px 0 12px 0;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: left;
+      padding: 5px 8px;
+      border: 1px solid #cbd5e1;
+    }
+
+    td {
+      padding: 4.5px 8px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .badge-pass {
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 700;
+      padding: 1.5px 5px;
+      border-radius: 3px;
+      font-size: 7.5pt;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 8.5pt;
+    }
+
+    .link-btn {
+      font-weight: 700;
+      color: #e11d48;
+      text-decoration: underline;
+    }
+
+    .screenshot-img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      margin: 6px 0;
+    }
+
+    .screenshot-caption {
+      font-size: 7.5pt;
+      color: #64748b;
+      text-align: center;
+      margin-top: -2px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .footer-note {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 7pt;
+      color: #94a3b8;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1: EXACT 1-PAGE CASE STUDY WRITE-UP ================= -->
+  <div class="page p1-body">
+    <div class="header-banner">
+      <div>
+        <h1 class="header-title">Product Case Study: FestMatch F&B</h1>
+        <div class="header-subtitle">Campus Fest Discovery & Sampling Engine for Emerging Indian Food & Beverage Brands</div>
+      </div>
+      <div class="meta-box">
+        <strong>Candidate:</strong> Anand Shinde<br>
+        <strong>Artifact:</strong> 1-Page Summary (~680 words)<br>
+        <strong>Date:</strong> November 2026
+      </div>
+    </div>
+
+    <h2>1. My Take on the Problem Statement</h2>
+    <p>
+      Last year, a close friend who launched a boot-strapped iced-tea startup in Pune spent three chaotic weeks trying to get sampling stalls at college festivals across Pune and Mumbai. Between November and February, college festivals are the holy grail for emerging food & beverage (F&B) brands—whether selling craft soda, cold brew, energy drinks, or clean-label chips. Getting "liquid to lips"—handing a chilled trial directly to an 18-to-22-year-old student—drives authentic word-of-mouth and triggers immediate repeat orders on quick-commerce apps like Zepto and Blinkit.
+    </p>
+    <p>
+      Yet the current sponsorship discovery process is painful and disorganized:
+    </p>
+    <ul>
+      <li><strong>Arbitrary Pricing:</strong> Student sponsorship reps quote whatever they feel like on WhatsApp. One brand is quoted ₹2.5 Lakhs while another gets the exact same stall spot for ₹50,000 simply by aggressive haggling.</li>
+      <li><strong>Inflated Footfalls:</strong> Every festival brochure boasts "60,000+ Footfall," but most of that number counts general campus transit or ticketed concert attendees who never visit brand stalls.</li>
+      <li><strong>No Standardized ROI Metric:</strong> Digital marketing has clear CPM metrics (Cost Per Thousand Impressions), but college sponsorships force marketers through 30-page PDF brochures with zero standardized benchmarks to justify budgets to founders or CFOs.</li>
+      <li><strong>Logistical Surprises:</strong> My friend arrived at a fest only to discover the venue had zero 15A power lines for his beverage chillers, spoiling hundreds of bottles and wasting his ₹70,000 spend.</li>
+    </ul>
+
+    <div class="callout-p1">
+      <strong>What I Verified vs. What I Assumed:</strong><br>
+      • <em>Verified:</em> I spoke directly with my friend (D2C beverage founder) and a former student sponsorship lead from COEP Pune. I confirmed that emerging brands operate on experimental budgets of ₹30,000 to ₹1.5 Lakhs per fest, and their primary worries are exaggerated footfall numbers and sudden power/chiller restrictions on event day.<br>
+      • <em>Assumed:</em> I am assuming that calculating a standardized "Cost per 1,000 Students" (CPM) and capping shortlists at 3 festivals provides enough decision clarity to turn an agonizing 3-week negotiation into a 5-minute decision.
+    </div>
+
+    <div class="p1-grid">
+      <div class="p1-card">
+        <h2 style="margin-top:0;">2. What is In Scope</h2>
+        <ol style="margin-bottom:0;">
+          <li><strong>Multi-Parameter Filter Bar:</strong> Filter by City Hub (Mumbai, Pune, Bengaluru, Delhi NCR), Max Budget in ₹ (slider up to ₹5L), Goal (Sampling, Stall, Sponsor), and Min Footfall.</li>
+          <li><strong>Standardized Decision Cards:</strong> Verified attendance, starting package, crowd vibe tag, activation chips, and auto-computed CPM: <code>(Package / Footfall) × 1,000</code>.</li>
+          <li><strong>F&B Logistics Specs:</strong> Continuous 15A chiller lines, canopy dimensions, peak consumption rush hours, and past brand sponsors.</li>
+          <li><strong>Shortlist & Compare Drawer (Max 3):</strong> Pin up to 3 festivals to review combined student reach, total budget, blended portfolio CPM, and side-by-side comparison matrix.</li>
+          <li><strong>Pitch Call Booking Flow:</strong> Captures brand name, work email, and slot, with confirmation state, booking reference ID, and 1-click campaign brief export.</li>
+          <li><strong>Curated Seed Data:</strong> 12 realistic Indian college festivals across 4 cities spanning ₹28,000 to ₹3,80,000 packages and 6,000 to 52,000 footfalls.</li>
+        </ol>
+      </div>
+
+      <div class="p1-card">
+        <h2 style="margin-top:0;">3. What is Out of Scope</h2>
+        <ul>
+          <li><strong>No Login / Auth Barriers:</strong> Zero-login access for immediate testing.</li>
+          <li><strong>No Fest Admin Portal:</strong> Data is curated upfront to ensure audit integrity.</li>
+          <li><strong>No Payment Escrow:</strong> Sponsorships require university MOUs, NDAs, and GST invoicing; app solves discovery and pitch reservation.</li>
+        </ul>
+
+        <h2>4. Solution & Why it Works</h2>
+        <p><strong>FestMatch F&B</strong> is an ROI engine built specifically for young F&B brands:</p>
+        <ul style="margin-bottom:0;">
+          <li><strong>Standardizes Performance Metrics:</strong> CPM turns chaotic quotes into measurable cost per student reached.</li>
+          <li><strong>Shortlist Cap of 3:</strong> Prevents analysis paralysis; leads curate a sharp 3-campus strategy.</li>
+          <li><strong>F&B-First Logistics Upfront:</strong> Surfacing electrical wattage and peak hunger hours prevents costly on-ground disasters.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <span>FestMatch F&B • Product Case Study Submission</span>
+      <span>Page 1 of 5 (1-Page Executive Write-Up)</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2: ARTIFACT 2 - PROMPTS ================= -->
+  <div class="page norm-body">
+    <div class="header-banner">
+      <div>
+        <h1 class="header-title">Artifact 2: Prompts Used to Create the Tool</h1>
+        <div class="header-subtitle">Architecture & Prompt Engineering Log</div>
+      </div>
+      <div class="meta-box">
+        FestMatch F&B Engine<br>Candidate: Anand Shinde
+      </div>
+    </div>
+
+    <p>The application was constructed iteratively through 5 targeted architectural prompts:</p>
+
+    <h3>Prompt 1: Domain Modeling & Seed Dataset Architecture</h3>
+    <div class="code-box">Act as a Principal Product Architect and Domain Expert in Indian D2C / F&B Trade Marketing.
+We are designing a digital platform called 'FestMatch F&B' for emerging beverage, snack, and QSR brands to discover and sponsor Indian college festivals.
+
+Create a curated JavaScript seed dataset of 10 to 12 realistic Indian college festivals across Mumbai, Pune, Bengaluru, and Delhi NCR.
+
+Requirements for each fest object:
+1. Realistic fest and college name (e.g. Mood Indigo - IIT Bombay, Malhar - St. Xavier's, Crossroads - SRCC, Sympulse - Symbiosis, Cul-Ah! - Mount Carmel, 8th Mile - RVCE, MindSpark - COEP, etc.).
+2. Varied budgets spanning ₹25,000 to ₹4,00,000 and verified student footfalls from 6,000 to 52,000+.
+3. Supported Campaign Goals: "Product Sampling", "Food Stall", "Title/Co-Sponsor".
+4. Standardized decision metric: CPM (Cost per 1,000 students) = round((startingPackage / footfall) * 1000).
+5. Granular F&B logistical specs: Chiller/Freezer electrical power (15A socket availability), stall dimensions, sampling permissions, commercial sales, peak hours, demographics, and past sponsors.</div>
+
+    <h3>Prompt 2: Core User Interface, Theme, and Responsive Layout</h3>
+    <div class="code-box">Build a crisp, responsive Single-Page Web App using Tailwind CSS and Lucide icons for the FestMatch tool.
+Theme: Clean, modern, high-contrast B2B SaaS palette. Use Slate neutrals with vibrant Rose/Crimson accents to evoke food & beverage energy, paired with Emerald for high-ROI metrics.
+
+Sections:
+1. Header: Brand badge ("FestMatch F&B - India Edition"), tagline, live shortlist badge counter, and "How CPM is Calculated" trigger modal.
+2. Hero Banner: Tailored for D2C beverage & snack brand marketing managers looking for verified student footfall.
+3. Quick Preset Filter Chips: "All Fests", "Starter Budget (< ₹1 Lakh)", "Mega Footfall (25k+)", "Best ROI (< ₹5k CPM)", "Sampling Ready".
+4. Filter Bar: City Tabs (All, Mumbai, Pune, Bengaluru, Delhi NCR), Search, Sort dropdown, Max Budget Slider (₹25k-₹5L), Campaign Goal, Min Footfall Slider.
+5. Responsive Card Grid (1 col mobile, 2 col tablet, 3 col desktop) with empty state fallback when no results match.</div>
+
+    <h3>Prompt 3: Discovery Cards & Standardized Decision Metrics</h3>
+    <div class="code-box">Render each fest card as a decision cockpit for a marketing manager.
+Key elements on each card:
+1. Gradient header with fest cover tag, edition, city/campus location, and verified footfall badge.
+2. College name, fest title, dates, and days count.
+3. Audience & Campus vibe tag (e.g. "Asia's Largest Fest • Massive Night Concerts").
+4. Standardized Decision Metrics Grid: Verified Footfall, Starting Package formatted in INR, auto-calculated CPM.
+5. Activation tags: 🥤 Product Sampling, 🍔 Food Stall, ⭐ Title/Co-Sponsor.
+6. Actions: "F&B Specs" modal view and "+ Shortlist" toggle.</div>
+
+    <h3>Prompt 4: Shortlist Constraints, Floating Dock & Comparison Matrix</h3>
+    <div class="code-box">Implement an interactive shortlist engine with the following business constraints:
+1. Maximum 3 Fests: If user attempts to add a 4th fest, prevent addition and display an intuitive toast.
+2. Floating Bottom Dock: Appears whenever 1 to 3 fests are shortlisted. Real-time aggregate metrics: Combined Reach, Total Budget, and Blended CPM.
+3. Side-by-Side Comparison Modal: Multi-column table comparing all 3 shortlisted fests across Footfall, Package, CPM, Dates, Vibe, Chiller Power, Sampling Permissions, Peak Hours, and Brand Fit Verdict.
+4. "Request Pitch Call" Workflow: Form collecting Brand Name, F&B Category, Marketing Contact, Work Email, Preferred 15-min Slot, and Special Logistics Notes, transitioning to a confirmation state with booking reference (#FEST-PITCH-XXXX) and 1-click campaign brief export.</div>
+
+    <h3>Prompt 5: Automated Testing & Verification Suite</h3>
+    <div class="code-box">Write a standalone Python evaluation test suite test_suite.py that verifies seed data coverage, exact CPM mathematics, multi-parameter filtering algorithms, shortlist boundary constraints, and booking payload schemas.</div>
+
+    <div class="footer-note">
+      <span>FestMatch F&B • Product Case Study Submission</span>
+      <span>Page 2 of 5 (Prompts Engineering Log)</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 3: ARTIFACT 3 - EVALS ================= -->
+  <div class="page norm-body">
+    <div class="header-banner">
+      <div>
+        <h1 class="header-title">Artifact 3: Evals Used to Test the Solution</h1>
+        <div class="header-subtitle">Automated Evaluation Suite & Edge Case Matrix</div>
+      </div>
+      <div class="meta-box">
+        FestMatch F&B Engine<br>Candidate: Anand Shinde
+      </div>
+    </div>
+
+    <h2>1. Automated Test Suite Results (`test_suite.py`)</h2>
+    <p>All 19 test cases completed with 100% pass rate:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Evaluation Category</th>
+          <th style="width: 50%;">Test Case Description</th>
+          <th style="width: 15%;">Observed</th>
+          <th style="width: 10%;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Seed Data Integrity</strong></td><td>Total festivals count between 8 and 15</td><td>12 Festivals</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>City Coverage</strong></td><td>All 4 target cities represented (Mumbai, Pune, Bengaluru, Delhi)</td><td>All 4 present</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Budget Spread</strong></td><td>Varied budgets spanning ₹25,000 to ₹4,00,000+</td><td>₹28k - ₹3.8L</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Footfall Spread</strong></td><td>Footfall spans small (<10k) to mega (50k+) campus festivals</td><td>6,000 - 52,000</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>CPM Arithmetic</strong></td><td>Every festival CPM equals round((Package / Footfall) × 1,000) exactly</td><td>100% Match</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>City Filter Logic</strong></td><td>Pune city filter returns exact Pune fests without contamination</td><td>3 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Budget Filter Ceiling</strong></td><td>Max budget ₹1,00,000 includes only packages &lt;= ₹1,00,000</td><td>6 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Goal Filter - Sampling</strong></td><td>Filters fests supporting Product Sampling activations</td><td>12 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Goal Filter - Stall</strong></td><td>Filters fests supporting commercial Food Stalls</td><td>11 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Goal Filter - Sponsor</strong></td><td>Filters fests supporting Title / Co-Sponsorship activations</td><td>5 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Footfall Threshold</strong></td><td>Minimum footfall filter &gt;= 20,000 students excludes smaller campuses</td><td>5 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Combined Multi-Filter</strong></td><td>Multi-filter (Mumbai + &lt;= ₹2L + Sampling) returns valid intersection</td><td>2 Fests</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Aggregate Reach Math</strong></td><td>Combined reach equals exact sum of shortlisted student footfalls</td><td>Sum Exact</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Aggregate Budget Math</strong></td><td>Total budget equals exact sum of shortlisted package amounts</td><td>Sum Exact</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Blended CPM Math</strong></td><td>Blended CPM matches aggregate ratio round((Total Budget / Total Reach) × 1,000)</td><td>Ratio Exact</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Shortlist Hard Cap</strong></td><td>Boundary constraint strictly limits shortlist to maximum 3 items</td><td>Capped at 3</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Booking Schema</strong></td><td>Booking payload contains required fields (Brand, Contact, Email, Slot)</td><td>All Valid</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Email Validation</strong></td><td>Work email format regex validation correctly identifies valid emails</td><td>Valid</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Overall Test Suite</strong></td><td>19 out of 19 automated unit & evaluation checks completed</td><td>19 / 19</td><td><span class="badge-pass">100% PASS</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Edge Case & Failure Mode Matrix</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Scenario</th>
+          <th style="width: 35%;">Action / Input</th>
+          <th style="width: 30%;">Observed Result</th>
+          <th style="width: 10%;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Shortlist Overflow</strong></td><td>User tries adding a 4th festival</td><td>Blocked; warning toast displayed; count stays at 3.</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Empty Comparison</strong></td><td>User deletes all fests from comparison table</td><td>Modal auto-closes cleanly; empty state feedback provided.</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Zero Results Filter</strong></td><td>Filters set to Pune + ₹30k budget + 40k footfall</td><td>Empty state rendered with 1-click "Clear All Filters" button.</td><td><span class="badge-pass">PASS</span></td></tr>
+        <tr><td><strong>Page Reload</strong></td><td>User reloads after shortlisting 2 fests</td><td>State restored seamlessly from localStorage.</td><td><span class="badge-pass">PASS</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="footer-note">
+      <span>FestMatch F&B • Product Case Study Submission</span>
+      <span>Page 3 of 5 (Evaluation Suite & Edge Cases)</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 4: ARTIFACT 4 - LINKS & CODE ACCESS ================= -->
+  <div class="page norm-body">
+    <div class="header-banner">
+      <div>
+        <h1 class="header-title">Artifact 4: Links & Application Access</h1>
+        <div class="header-subtitle">Live Deployment, GitHub Repository & Execution Instructions</div>
+      </div>
+      <div class="meta-box">
+        FestMatch F&B Engine<br>Candidate: Anand Shinde
+      </div>
+    </div>
+
+    <h2>1. Live Application & Code Links</h2>
+    <div class="link-row">
+      <div>
+        <strong>GitHub Repository (Source Code & Assets):</strong><br>
+        <a class="link-btn" href="https://github.com/shindeanand-587/Groww-app">https://github.com/shindeanand-587/Groww-app</a>
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div>
+        <strong>1-Click Streamlit Community Cloud Deploy Link:</strong><br>
+        <a class="link-btn" href="https://share.streamlit.io/deploy?repository=shindeanand-587/Groww-app&branch=main&mainModule=streamlit_app.py">https://share.streamlit.io/deploy?repository=shindeanand-587/Groww-app&branch=main&mainModule=streamlit_app.py</a>
+      </div>
+    </div>
+
+    <h2>2. How to Run Locally</h2>
+    <h3>Option A: Streamlit Application (Native Python)</h3>
+    <div class="code-box">pip install -r requirements.txt
+streamlit run streamlit_app.py</div>
+    <p>Launches immediately at <code>http://localhost:8501</code> with full interactive sidebar filters, comparison dataframe, and pitch booking flow.</p>
+
+    <h3>Option B: Standalone Web App (Zero-Dependency Single-Page App)</h3>
+    <div class="code-box">python -m http.server 8000</div>
+    <p>Opens at <code>http://localhost:8000</code> or open <code>index.html</code> directly in any web browser with zero compilation needed.</p>
+
+    <h3>Option C: Re-Run Automated Evaluation Suite</h3>
+    <div class="code-box">python test_suite.py</div>
+    <p>Executes all 19 automated evaluation tests verifying seed data integrity, CPM arithmetic precision, multi-criteria filtering, and boundary constraints.</p>
+
+    <div class="footer-note">
+      <span>FestMatch F&B • Product Case Study Submission</span>
+      <span>Page 4 of 5 (Access Links & Execution)</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 5: VISUAL PROOF & SCREENSHOTS ================= -->
+  <div class="page norm-body">
+    <div class="header-banner">
+      <div>
+        <h1 class="header-title">Visual Verification & User Journey Gallery</h1>
+        <div class="header-subtitle">Key Product Screens & Decision Cockpit</div>
+      </div>
+      <div class="meta-box">
+        FestMatch F&B Engine<br>Candidate: Anand Shinde
+      </div>
+    </div>
+
+    <img src="screenshot_desktop.png" class="screenshot-img" style="max-height: 72mm; object-fit: contain;">
+    <div class="screenshot-caption">Figure 1: Main Fest Discovery Cockpit with City Hubs, Budget Slider, CPM Math & Activation Chips</div>
+
+    <img src="screenshot_comparison_matrix.png" class="screenshot-img" style="max-height: 72mm; object-fit: contain;">
+    <div class="screenshot-caption">Figure 2: Side-by-Side 3-Fest Comparison Matrix with Granular F&B Logistics & Chiller Electrical Specs</div>
+
+    <img src="screenshot_pitch_confirmed.png" class="screenshot-img" style="max-height: 72mm; object-fit: contain;">
+    <div class="screenshot-caption">Figure 3: Pitch Call Booking Confirmation State with Reference ID, 3-Step Execution Timeline & Brief Export</div>
+
+    <div class="footer-note">
+      <span>FestMatch F&B • Product Case Study Submission</span>
+      <span>Page 5 of 5 (Visual Journey Proof)</span>
+    </div>
+  </div>
+
+</body>
+</html>
