@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FestMatch | College Fest Sponsorship & Sampling Engine for Indian F&B Brands</title>
+  <meta name="description" content="Discover and shortlist high-ROI Indian college festivals for product sampling, food stalls, and sponsorships. Standardized decision metrics & verified footfall.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            },
+            accent: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Inline Favicon to prevent 404 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥤</text></svg>">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-rose-500 selection:text-white pb-32">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-slate-900 via-rose-950 to-slate-900 text-white text-xs py-2 px-4 border-b border-rose-900/40">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/30 text-rose-300 border border-rose-500/40 uppercase tracking-wide">
+          Fest Season 2026-27
+        </span>
+        <span class="text-slate-300 hidden sm:inline">
+          Verified student footfall & standardized CPM math for emerging Indian F&B brands (RTD beverages, snack bites & QSR).
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-300 text-[11px]">
+        <span class="flex items-center gap-1">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> 100% Verified Footfall Audits
+        </span>
+        <span class="flex items-center gap-1 hidden md:inline-flex">
+          <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i> Zero Agency Commission
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-500 flex items-center justify-center text-white shadow-md shadow-rose-500/20">
+          <i data-lucide="cup-soda" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-rose-900 to-slate-800 bg-clip-text text-transparent">
+              FestMatch <span class="text-rose-600">F&B</span>
+            </span>
+            <span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-1.5 py-0.5 rounded border border-rose-200">
+              India Edition
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium hidden sm:block">Campus Sampling & Sponsorship Intelligence</p>
+        </div>
+      </div>
+
+      <!-- Quick Nav Stats / Action -->
+      <div class="flex items-center gap-3">
+        <!-- Live Shortlist Pill in Nav -->
+        <button id="navShortlistBtn" onclick="toggleShortlistDrawer(true)" class="flex items-center gap-2 bg-slate-100 hover:bg-rose-50 hover:border-rose-300 text-slate-700 hover:text-rose-700 text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-200 transition-all">
+          <i data-lucide="bookmark" class="w-4 h-4 text-rose-600"></i>
+          <span>Shortlist</span>
+          <span id="navShortlistCount" class="bg-rose-600 text-white text-[11px] font-bold px-1.5 py-0.2 rounded-full min-w-[20px] text-center">0</span>
+        </button>
+
+        <a href="#aboutEngineModal" onclick="openAboutModal()" class="text-xs text-slate-600 hover:text-slate-900 font-medium p-2 rounded-lg hover:bg-slate-100 hidden sm:inline-flex items-center gap-1">
+          <i data-lucide="info" class="w-3.5 h-3.5"></i> How CPM is Calculated
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-rose-50/60 via-slate-50 to-slate-50 border-b border-slate-200/60 pt-8 pb-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-semibold mb-3 border border-rose-200">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-rose-600"></i>
+          For D2C Beverages, Snacks & QSR Marketers
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          Discover High-ROI Indian College Fests for Product Sampling & Stalls
+        </h1>
+        <p class="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
+          Reach thousands of Gen-Z college students with verified footfalls, transparent package rates, and auto-calculated 
+          <strong class="text-slate-800 font-semibold">Cost per 1,000 Students (CPM)</strong>. Shortlist up to 3 fests and schedule direct sponsorship pitch calls.
+        </p>
+      </div>
+
+      <!-- Quick Preset Filter Chips -->
+      <div class="mt-6 flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200/80">
+        <span class="text-xs font-semibold text-slate-500 flex items-center gap-1 mr-1">
+          <i data-lucide="sliders-horizontal" class="w-3 h-3"></i> Quick Presets:
+        </span>
+        <div id="presetChipsContainer" class="flex flex-wrap gap-2">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Filter Bar & Search Container -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4 sm:p-5 transition-all">
+      
+      <!-- Top Row: City Selection & Search Bar -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+        
+        <!-- City Filter Tabs -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+            Target City Hub
+          </label>
+          <div class="inline-flex p-1 bg-slate-100 rounded-xl gap-1 flex-wrap" id="cityTabs">
+            <button data-city="All" class="city-tab active px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-900 shadow-sm border border-slate-200/60">
+              All Cities (12)
+            </button>
+            <button data-city="Mumbai" class="city-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition-all">
+              Mumbai
+            </button>
+            <button data-city="Pune" class="city-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition-all">
+              Pune
+            </button>
+            <button data-city="Bengaluru" class="city-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition-all">
+              Bengaluru
+            </button>
+            <button data-city="Delhi" class="city-tab px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition-all">
+              Delhi NCR
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Bar & Sort Dropdown -->
+        <div class="flex items-center gap-3 flex-1 lg:max-w-md">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search fest, college (e.g. IIT, Malhar, SRCC)..." 
+              class="w-full pl-9 pr-8 py-2 text-xs bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all"
+            >
+            <button id="clearSearchBtn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- Sort Select -->
+          <div class="w-44">
+            <select 
+              id="sortSelect" 
+              class="w-full py-2 px-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+            >
+              <option value="cpm_asc">Lowest CPM (Best ROI)</option>
+              <option value="footfall_desc">Highest Footfall</option>
+              <option value="budget_asc">Budget: Low to High</option>
+              <option value="budget_desc">Budget: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: Numerical Filters (Budget, Goal, Min Footfall) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4">
+        
+        <!-- Max Budget Filter -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="budgetRange" class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <i data-lucide="indian-rupee" class="w-3.5 h-3.5 text-rose-600"></i> Max Budget
+            </label>
+            <span id="budgetValueDisplay" class="text-xs font-bold font-mono-numbers text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+              ₹5,00,000
+            </span>
+          </div>
+          <input 
+            type="range" 
+            id="budgetRange" 
+            min="25000" 
+            max="500000" 
+            step="10000" 
+            value="500000" 
+            class="w-full accent-rose-600"
+          >
+          <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1">
+            <span>₹25,000</span>
+            <span>₹1.5 Lakh</span>
+            <span>₹3.0 Lakh</span>
+            <span>₹5.0 Lakh</span>
+          </div>
+        </div>
+
+        <!-- Campaign Goal Filter -->
+        <div>
+          <label for="goalFilter" class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="target" class="w-3.5 h-3.5 text-rose-600"></i> Campaign Goal
+          </label>
+          <select 
+            id="goalFilter" 
+            class="w-full py-2 px-3 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+          >
+            <option value="All">All Goals (Sampling, Stalls, Sponsors)</option>
+            <option value="Product Sampling">Product Sampling (Free Kiosk/Chillers)</option>
+            <option value="Food Stall">Food Stall (Commercial Sales Allowed)</option>
+            <option value="Title/Co-Sponsor">Title / Co-Sponsor (Main Stage Branding)</option>
+          </select>
+          <p class="text-[10px] text-slate-500 mt-1">Filters fests with verified logistics for this goal</p>
+        </div>
+
+        <!-- Minimum Footfall Filter -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="footfallRange" class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+              <i data-lucide="users" class="w-3.5 h-3.5 text-rose-600"></i> Minimum Footfall
+            </label>
+            <span id="footfallValueDisplay" class="text-xs font-bold font-mono-numbers text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
+              Any Footfall
+            </span>
+          </div>
+          <input 
+            type="range" 
+            id="footfallRange" 
+            min="3000" 
+            max="50000" 
+            step="1000" 
+            value="3000" 
+            class="w-full accent-indigo-600"
+          >
+          <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1">
+            <span>3,000</span>
+            <span>15,000+</span>
+            <span>30,000+</span>
+            <span>50,000+</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Active Filter Summary & Clear Action Bar -->
+      <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+        <div class="flex items-center gap-2">
+          <span>Showing <strong id="resultsCount" class="text-slate-900 font-bold">12</strong> verified college festivals</span>
+          <span id="filterActiveBadge" class="hidden text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium">
+            Filters Active
+          </span>
+        </div>
+        <button 
+          id="resetFiltersBtn" 
+          onclick="resetAllFilters()" 
+          class="text-xs text-rose-600 hover:text-rose-700 font-semibold hover:underline flex items-center gap-1"
+        >
+          <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Reset All Filters
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Fest Discovery Cards Grid -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-1">
+    
+    <!-- Empty State (Shown when filters yield 0 results) -->
+    <div id="emptyState" class="hidden bg-white border border-dashed border-slate-300 rounded-2xl p-12 text-center max-w-lg mx-auto my-12">
+      <div class="w-16 h-16 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="filter-x" class="w-8 h-8"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-900">No college fests match these filters</h3>
+      <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+        Try widening your budget slider, lowering the minimum footfall requirement, or selecting "All Cities".
+      </p>
+      <button 
+        onclick="resetAllFilters()" 
+        class="mt-5 px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-semibold hover:bg-rose-700 transition-colors shadow-sm"
+      >
+        Clear All Filters
+      </button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="festsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Injected dynamically via app.js -->
+    </div>
+
+  </main>
+
+  <!-- Sticky Bottom Shortlist Floating Bar (Active when 1-3 fests shortlisted) -->
+  <div id="shortlistFloatingBar" class="fixed bottom-4 left-4 right-4 z-40 max-w-5xl mx-auto hidden animate-slide-up">
+    <div class="glass-panel-dark text-white rounded-2xl p-3 sm:p-4 shadow-2xl border border-slate-700/80 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- Left: Shortlisted items chips & count -->
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+            <span id="shortlistBadgeCount">0</span>/3
+          </div>
+          <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1.5">
+              <span>Shortlisted Fests</span>
+              <span class="text-[10px] text-rose-300 bg-rose-950 px-1.5 py-0.2 rounded border border-rose-800">
+                Ready to Pitch
+              </span>
+            </div>
+            <div class="text-[11px] text-slate-300" id="shortlistFestNamesPreview">
+              Select up to 3 fests to compare
+            </div>
+          </div>
+        </div>
+
+        <!-- Thumbnails of shortlisted fests -->
+        <div id="shortlistThumbnails" class="flex items-center gap-1.5 ml-2 overflow-x-auto">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- Middle: Aggregated Decision Metrics -->
+      <div class="flex items-center gap-4 sm:gap-6 bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700/60 text-xs w-full md:w-auto justify-around">
+        <div>
+          <div class="text-[10px] text-slate-400 font-medium">Combined Reach</div>
+          <div id="shortlistTotalReach" class="font-extrabold text-white text-sm font-mono-numbers">0</div>
+        </div>
+        <div class="w-px h-7 bg-slate-700"></div>
+        <div>
+          <div class="text-[10px] text-slate-400 font-medium">Total Budget</div>
+          <div id="shortlistTotalBudget" class="font-extrabold text-rose-400 text-sm font-mono-numbers">₹0</div>
+        </div>
+        <div class="w-px h-7 bg-slate-700"></div>
+        <div>
+          <div class="text-[10px] text-slate-400 font-medium">Blended CPM</div>
+          <div id="shortlistBlendedCpm" class="font-extrabold text-emerald-400 text-sm font-mono-numbers">₹0</div>
+        </div>
+      </div>
+
+      <!-- Right: Action Buttons (Compare & Pitch Call) -->
+      <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+        <button 
+          onclick="openComparisonModal()" 
+          class="flex-1 md:flex-initial px-3.5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-xs font-semibold border border-slate-600 transition-colors flex items-center justify-center gap-1.5"
+          title="Compare side by side metrics"
+        >
+          <i data-lucide="columns-3" class="w-3.5 h-3.5"></i>
+          <span>Compare Matrix</span>
+        </button>
+        <button 
+          onclick="openPitchCallModal()" 
+          class="flex-1 md:flex-initial px-4 py-2.5 bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-rose-600/30 flex items-center justify-center gap-1.5"
+        >
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>Request Pitch Call</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Comparison Matrix Modal -->
+  <div id="comparisonModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] flex flex-col border border-slate-200 overflow-hidden animate-fade-in my-auto">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-lg font-bold text-slate-900">Fest Comparison Matrix</h2>
+            <span id="comparisonModalCount" class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full font-bold">
+              0 of 3 Selected
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 mt-0.5">Apples-to-apples decision metrics for F&B brand sponsorship & sampling.</p>
+        </div>
+        <button onclick="closeComparisonModal()" class="w-8 h-8 rounded-lg bg-slate-200/80 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Content: Dynamic Table -->
+      <div class="p-5 overflow-x-auto flex-1" id="comparisonTableContainer">
+        <!-- Injected via app.js -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+        <div class="text-xs text-slate-500">
+          Tip: You can shortlist up to 3 fests to compare reach vs package cost.
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="closeComparisonModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 rounded-xl hover:bg-slate-200 transition-colors">
+            Close
+          </button>
+          <button onclick="closeComparisonModal(); openPitchCallModal();" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-sm flex items-center gap-1.5 transition-colors">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Request Pitch Call for All
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pitch Call Booking Modal & Confirmation State -->
+  <div id="pitchModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full flex flex-col border border-slate-200 overflow-hidden animate-fade-in my-auto">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center">
+              <i data-lucide="phone-call" class="w-4 h-4"></i>
+            </span>
+            <h2 class="text-lg font-bold text-slate-900" id="pitchModalTitle">Request Direct Pitch Call</h2>
+          </div>
+          <p class="text-xs text-slate-500 mt-0.5">Connect directly with student conveners & sponsorship heads.</p>
+        </div>
+        <button onclick="closePitchModal()" class="w-8 h-8 rounded-lg bg-slate-200/80 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- State 1: Booking Form -->
+      <div id="pitchFormContainer" class="p-5 space-y-4">
+        
+        <!-- Shortlisted Colleges Summary Bar -->
+        <div class="bg-rose-50 border border-rose-200/80 rounded-xl p-3">
+          <div class="flex items-center justify-between text-xs text-rose-900 font-semibold mb-1">
+            <span>Selected Festivals:</span>
+            <span id="pitchModalReachSummary" class="text-slate-600 font-normal">Est. Reach: 0</span>
+          </div>
+          <div id="pitchSelectedFestsTags" class="flex flex-wrap gap-1.5 mt-1">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <form id="pitchBookingForm" onsubmit="handlePitchFormSubmit(event)" class="space-y-3.5">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Brand Name -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Brand Name *</label>
+              <input 
+                type="text" 
+                id="brandNameInput" 
+                required 
+                placeholder="e.g. Svami / Lahori Zeera / CoolBite" 
+                class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+              >
+            </div>
+
+            <!-- F&B Category -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">F&B Sub-Category *</label>
+              <select 
+                id="brandCategoryInput" 
+                required 
+                class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 font-medium"
+              >
+                <option value="Cold RTD Beverage / Energy Drinks">Cold RTD Beverage / Energy Drinks</option>
+                <option value="Healthy Chips / Gourmet Snacks">Healthy Chips / Gourmet Snacks</option>
+                <option value="Quick Service Food (QSR) / Rolls / Burgers">Quick Service Food (QSR) / Rolls / Burgers</option>
+                <option value="Artisanal Coffee & Tea">Artisanal Coffee & Tea</option>
+                <option value="Desserts / Bakery / Confectionery">Desserts / Bakery / Confectionery</option>
+                <option value="Nutrition / Protein Bars">Nutrition / Protein Bars</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Contact Name -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Marketing Contact Name *</label>
+              <input 
+                type="text" 
+                id="contactNameInput" 
+                required 
+                placeholder="e.g. Ananya Sharma" 
+                class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+              >
+            </div>
+
+            <!-- Work Email -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Work Email *</label>
+              <input 
+                type="email" 
+                id="contactEmailInput" 
+                required 
+                placeholder="ananya@brand.in" 
+                class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+              >
+            </div>
+          </div>
+
+          <!-- Preferred Slot & Phone -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Preferred 15-Min Pitch Slot *</label>
+              <select 
+                id="preferredSlotInput" 
+                required 
+                class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 font-medium"
+              >
+                <option value="Tomorrow 11:30 AM IST">Tomorrow 11:30 AM IST</option>
+                <option value="Tomorrow 3:00 PM IST">Tomorrow 3:00 PM IST</option>
+                <option value="Tomorrow 5:30 PM IST">Tomorrow 5:30 PM IST</option>
+                <option value="Day After Tomorrow 11:00 AM IST">Day After Tomorrow 11:00 AM IST</option>
+                <option value="Day After Tomorrow 4:00 PM IST">Day After Tomorrow 4:00 PM IST</option>
+                <option value="Immediate Call (Next 2 Hours)">Immediate Call (Next 2 Hours)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Phone / WhatsApp (Optional)</label>
+              <input 
+                type="tel" 
+                id="contactPhoneInput" 
+                placeholder="+91 98765 43210" 
+                class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+              >
+            </div>
+          </div>
+
+          <!-- Special Logistics / Notes -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">
+              F&B Logistics Requirements (Optional)
+            </label>
+            <textarea 
+              id="specialNotesInput" 
+              rows="2" 
+              placeholder="e.g. Need 15A power socket for deep freeze chillers + 4 student sampling promoter passes..." 
+              class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
+            ></textarea>
+          </div>
+
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              id="submitPitchBtn" 
+              class="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-md shadow-rose-600/20 flex items-center justify-center gap-2 transition-all"
+            >
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Confirm & Send Pitch Request</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- State 2: Confirmation / Success View -->
+      <div id="pitchSuccessContainer" class="p-6 text-center space-y-4 hidden">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+          <i data-lucide="check-circle-2" class="w-9 h-9"></i>
+        </div>
+
+        <div>
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 mb-2">
+            Booking Request Confirmed
+          </span>
+          <h3 class="text-xl font-bold text-slate-900">Pitch Call Scheduled!</h3>
+          <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+            We have routed your campaign profile to the student sponsorship heads of the shortlisted colleges.
+          </p>
+        </div>
+
+        <!-- Booking Details Card -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left text-xs space-y-2 max-w-md mx-auto">
+          <div class="flex justify-between items-center pb-2 border-b border-slate-200">
+            <span class="text-slate-500">Booking Reference:</span>
+            <span id="confirmedBookingRef" class="font-mono font-bold text-rose-600 text-sm">#FEST-2026-F892</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Brand Name:</span>
+            <span id="confirmedBrandName" class="font-semibold text-slate-800">Svami Drinks</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Scheduled Slot:</span>
+            <span id="confirmedSlot" class="font-semibold text-slate-800">Tomorrow 11:30 AM IST</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">Notification Sent To:</span>
+            <span id="confirmedEmail" class="font-semibold text-slate-800">ananya@brand.in</span>
+          </div>
+          <div class="flex justify-between pt-1 border-t border-slate-200">
+            <span class="text-slate-500">Total Audience Reach:</span>
+            <span id="confirmedReach" class="font-bold text-indigo-700 font-mono-numbers">80,000 Students</span>
+          </div>
+        </div>
+
+        <!-- 3-Step Next Steps Tracker -->
+        <div class="max-w-md mx-auto text-left pt-2">
+          <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-2">What happens next:</div>
+          <div class="space-y-2 text-xs text-slate-600">
+            <div class="flex items-start gap-2">
+              <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-bold mt-0.5">1</span>
+              <span>Brochure & stall layout specifications sent to your email.</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-bold mt-0.5">2</span>
+              <span>Fest POC responds within 4 business hours with direct Google Meet link.</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-bold mt-0.5">3</span>
+              <span>Finalize stall location, chilling power logistics, and promoter passes.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
+          <button 
+            onclick="downloadShortlistSummary()" 
+            class="w-full sm:w-auto px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+          >
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Campaign Brief
+          </button>
+          <button 
+            onclick="resetPitchModalToExplore()" 
+            class="w-full sm:w-auto px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-sm transition-colors"
+          >
+            Explore More Fests
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Fest Detail & F&B Logistics Specs Modal -->
+  <div id="festDetailModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full flex flex-col border border-slate-200 overflow-hidden animate-fade-in my-auto">
+      <div id="festDetailContent">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- About / CPM Calculation Info Modal -->
+  <div id="aboutModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 border border-slate-200 animate-fade-in">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-bold text-slate-900 flex items-center gap-2">
+          <i data-lucide="calculator" class="w-5 h-5 text-rose-600"></i>
+          Standardized Decision Metrics & CPM Math
+        </h3>
+        <button onclick="closeAboutModal()" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 space-y-3.5 text-xs text-slate-600 leading-relaxed">
+        <p>
+          In traditional college sponsorships, marketing managers get opaque proposals with arbitrary quotes and exaggerated footfalls. FestMatch standardizes this with:
+        </p>
+
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div class="font-mono font-bold text-slate-900 text-sm mb-1">
+            CPM = (Starting Package ₹ ÷ Verified Footfall) × 1,000
+          </div>
+          <div class="text-[11px] text-slate-500">
+            For example, a ₹1,40,000 stall at Malhar with 28,000 verified students has a CPM of <strong>₹5,000</strong> (i.e. ₹5 per student reached).
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="font-semibold text-slate-800">F&B Brand Benchmarks:</div>
+          <ul class="list-disc pl-4 space-y-1 text-slate-600">
+            <li><strong>Under ₹5,000 CPM:</strong> High ROI tier — Exceptional value for liquid-to-lips beverage trials and snack sampling.</li>
+            <li><strong>₹5,000 - ₹7,000 CPM:</strong> Standard tier — Balanced mix of footfall volume, brand buzz, and pro-nite crowds.</li>
+            <li><strong>Over ₹7,000 CPM:</strong> Flagship tier — Premium marquee festivals (IITs) with multi-day high-density campus residence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-3 border-t border-slate-100 text-right">
+        <button onclick="closeAboutModal()" class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-xl">
+          Got it
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
